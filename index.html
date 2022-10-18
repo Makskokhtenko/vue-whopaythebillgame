@@ -15,13 +15,54 @@
     />
 
    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
  
    <title>Who pays the bill</title>
 </head>
 <body>
 
     <div id="app">
-       APP
+        <div id="names" class="container" v-if="state">
+            <div class="logo">
+                <h1>Who pays the bill</h1>
+            </div>
+            <div class="input_container">
+                <input v-model.trim="inputName" type="text">
+                <button @click="addNamesToList">Add name</button>
+            </div>
+            <div class="error_label animate__animated animate__headShake" v-if="showError">{{ error }}</div>
+            <div class="list_of_names">
+                <div class="animate__animated  animate__fadeIn" v-for="(name,index) in names"
+                     :key="name"
+                     @click="removeName(index)"
+                >
+                    {{ name }}
+                </div>
+            </div>
+            <div v-if="isReady">
+                <div class="action_button animate__animated  animate__fadeIn" @click="showResults">
+                    Check the loser
+                </div>
+            </div>
+        </div>
+
+        <div id="result" class="container animate__animated  animate__fadeIn" v-if="!state">
+            <div class="results_container">
+                <h1>The looser is:</h1>
+                <div class="result_value">
+                    {{ result }}
+                </div>
+                <div class="action_button animate__animated  animate__fadeIn"
+                     @click="resetApp">
+                    Start over
+                </div>
+                <br>
+                <div class="action_button animate__animated  animate__fadeIn"
+                     @click="getNewResult">
+                    Get a new name
+                </div>
+            </div>
+        </div>
     </div>
 
  </body>
