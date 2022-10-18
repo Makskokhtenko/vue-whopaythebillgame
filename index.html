@@ -27,7 +27,7 @@
                 <h1>Who pays the bill</h1>
             </div>
             <div class="input_container">
-                <input v-model.trim="inputName" type="text">
+                <input v-model.trim="inputName" v-on:keyup.enter="onEnter"  type="text">
                 <button @click="addNamesToList">Add name</button>
             </div>
             <div class="error_label animate__animated animate__headShake" v-if="showError">{{ error }}</div>
@@ -41,14 +41,14 @@
             </div>
             <div v-if="isReady">
                 <div class="action_button animate__animated  animate__fadeIn" @click="showResults">
-                    Check the loser
+                    Spot the loser
                 </div>
             </div>
         </div>
 
         <div id="result" class="container animate__animated  animate__fadeIn" v-if="!state">
             <div class="results_container">
-                <h1>The looser is:</h1>
+                <h1>The loser is:</h1>
                 <div class="result_value">
                     {{ result }}
                 </div>
@@ -59,7 +59,7 @@
                 <br>
                 <div class="action_button animate__animated  animate__fadeIn"
                      @click="getNewResult">
-                    Get a new name
+                    Choose someone else
                 </div>
             </div>
         </div>

@@ -70,6 +70,9 @@ const app = Vue.createApp({
       this.error = '';
       this.showError = false;
       this.result = '';
+    },
+    onEnter(){
+      this.addNamesToList();
     }
   }
 
